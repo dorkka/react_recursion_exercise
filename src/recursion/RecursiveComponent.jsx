@@ -7,21 +7,23 @@ export default class RecursiveComponent extends Component {
     components: PropTypes.array,
   };
 
-  _recursiveRender(child, componentIndex) {
-    if (componentIndex === -1)
-      return
+  _recursiveRender(components) {
 
-    const component = this.props.components[componentIndex](child)
+    if (components.length === 0) {
+      return null;
+    }
 
-    if (componentIndex === 0)
-      return component
-      
-    return this._recursiveRender(component, componentIndex - 1)
+    const Component = components[0];
+
+    return <Component>
+      {this._recursiveRender(components.slice(1))}
+    </Component>
   }
+
   render() {
     return (
       <div>
-        {this._recursiveRender('', this.props.components.length - 1)}
+        {this._recursiveRender(this.props.components)}
       </div>
     );
   }

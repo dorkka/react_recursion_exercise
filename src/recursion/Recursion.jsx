@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import RecursiveComponent from './RecursiveComponent';
 
-const One = (child) =>
-<div className="box"> One {child} </div>
+const One = props =>
+<div className="box"> One {props.children} </div>
 
-const Two = (child) =>
-<div className='box'> Two {child} </div>
+const Two = props =>
+<div className='box'> Two {props.children} </div>
 
-const Three = () =>
-<div className='box'> Three </div>
+const Three = props =>
+<div className='box'> Three {props.children}</div>
 
 const components = [One, Two, Three ];
 
